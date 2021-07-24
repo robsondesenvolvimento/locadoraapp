@@ -1,0 +1,14 @@
+{
+  "name": "locadoraapp",
+  "version": "1.0.0",
+  "description": "Trabalho para a materia de Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robson Candido dos Santos Alves <contato@robsonalves.dev.br> (https://www.robsonalves.dev.br)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
