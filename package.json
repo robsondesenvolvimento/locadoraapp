@@ -4,7 +4,7 @@
   "description": "Trabalho para a materia de Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "author": "Robson Candido dos Santos Alves <contato@robsonalves.dev.br> (https://www.robsonalves.dev.br)",
   "license": "ISC",
