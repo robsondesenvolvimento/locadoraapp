@@ -3,7 +3,7 @@ const restapi = require('./services/restapi/RestApi');
 console.log("Exemplos de requisição para cliente."); console.log();
 console.log("GET - http://localhost:3000/"); console.log();
 console.log("GET - http://localhost:3000/1"); console.log();
-console.log("GET - http://localhost:3000/filtro/?nome=Robson");
+console.log("GET - http://localhost:3000/filtro/?nome=Robson"); console.log();
 console.log("POST - http://localhost:3000/");
 var objeto = {
     "nome": "Henriques Casagrande dos Santos Alves",

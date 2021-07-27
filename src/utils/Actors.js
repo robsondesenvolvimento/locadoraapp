@@ -13,7 +13,8 @@ clientes.push(new Cliente('Robson Candido dos Santos Alves', '1980-08-29', 'Curi
 clientes.push(new Cliente('Henrique Casagrande dos Santos Alves', '2019-07-21', 'Curitiba', 'PR'));
 clientes.push(new Cliente('Ana Julia Casagrande da Silva', '1986-03-19', 'Curitiba', 'PR'));
 clientes.push(new Cliente('Gabriel Casagrande de Lima', '1980-08-29', 'Curitiba', 'PR'));
-clientes.push(new Cliente('Robson Teste', '1980-08-29', 'Curitiba', 'PR'));
+clientes.push(new Cliente('Robson dos Santos', '1980-08-29', 'Curitiba', 'PR'));
+clientes.push(new Cliente('Robson Henrique Casagrande', '1980-08-29', 'Curitiba', 'PR'));
 
 let locacoes = new Array();
 locacoes.push(new Locadora(1, 1));
