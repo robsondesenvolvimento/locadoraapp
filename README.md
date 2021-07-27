@@ -1,15 +1,16 @@
-#Projeto
+# Projeto
 - Este projeto representa uma locadora de veículos e esta sendo desenvolvido para apresentar os conhecimentos aprendidos em Node.js no curso de Pós Full stack developement JavaScript.
 
-#Requerimentos
+# Requerimentos
 - Node.js 14.x.x
 
-#Para iniciar a aplicação
+# Para iniciar a aplicação
 - yarn start
 - ou
 - npm start
 
-#Recursos
+# Recursos
+## Clientes
 - Listar todos os clientes ( GET - http://localhost:3000/cliente )
 - Pesquisar cliente pelo código ( GET - http://localhost:3000/cliente/1 )
 - Pesquisar cliente pelo nome que inicia ( GET - http://localhost:3000/cliente/filtro/?nome=Robson )

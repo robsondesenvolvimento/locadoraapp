@@ -1,4 +1,3 @@
-const Cliente = require("../../models/Cliente");
 const ClienteRepository = require("../../repository/ClienteRepository");
 
 const clienteRestApi = (app, recurso) => {
