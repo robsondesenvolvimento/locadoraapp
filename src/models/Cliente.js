@@ -15,6 +15,7 @@ class Cliente {
 
     get nome(){
         return this._nome;
+        
     }
     set nome(valor){
         this._nome = valor;

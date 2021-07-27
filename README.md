@@ -12,6 +12,7 @@
 #Recursos
 - Listar todos os clientes ( GET - http://localhost:3000/cliente )
 - Pesquisar cliente pelo código ( GET - http://localhost:3000/cliente/1 )
+- Pesquisar cliente pelo nome que inicia ( GET - http://localhost:3000/cliente/filtro/?nome=Robson )
 - Adicionar um novo usuário ( POST - http://localhost:3000/cliente )
 - Atualizar um usuário ( PUT - http://localhost:3000/cliente/1 )
 - Dados passados no corpo do POST ou PUT
