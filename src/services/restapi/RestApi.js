@@ -1,6 +1,7 @@
 const express = require("express");
 const clienteRestApi = require("./RestApiCliente");
 const veiculoRestApi = require("./RespApiVeiculo");
+const { clientes, veiculos, locacoes } = require("../../utils/Actors")
 
 const restapi = () => {
   const app = express();
@@ -8,7 +9,11 @@ const restapi = () => {
 
   app.use(express.json());
 
-  clienteRestApi(app, "/cliente");
+  //console.log(clientes);
+  //console.log(veiculos);
+  //console.log(locacoes);
+
+  clienteRestApi(app, "/cliente", clientes);
   veiculoRestApi(app, "/veiculo");
 
   app.listen(port, () => {
