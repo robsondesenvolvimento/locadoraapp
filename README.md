@@ -29,3 +29,6 @@
   }
 ```
 - Deletar um usuário ( DELETE - http://localhost:3000/cliente/1 )
+
+# Referencias
+- https://swagger.io/docs/specification/grouping-operations-with-tags/
