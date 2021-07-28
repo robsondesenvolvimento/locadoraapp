@@ -19,7 +19,8 @@
         "tags": [
           "Cliente"
         ],
-        "description": "Obtem lista de clientes.",
+        "summary": "Obter lista de clientes.",
+        "description": "Obter lista de clientes.",
         "parameters": [],
         "responses": {
           "200": {
@@ -31,6 +32,7 @@
         "tags": [
           "Cliente"
         ],
+        "summary": "Inserir um novo cliente.",
         "description": "Insere um novo cliente.",
         "parameters": [],
         "responses": {
@@ -45,7 +47,8 @@
         "tags": [
           "Cliente"
         ],
-        "description": "Obtem lista de clientes que começam com o nome especificado no filtro.",
+        "summary": "Traz uma lista filtrada pelo inicio do nome do cliente.",
+        "description": "Traz uma lista filtrada pelo inicio do nome do cliente.",
         "parameters": [
           {
             "name": "nome",
@@ -69,14 +72,15 @@
         "tags": [
           "Cliente"
         ],
-        "description": "Obtem cliente pelo seu id.",
+        "summary": "Traz um cliente filtrado pelo seu ID.",
+        "description": "Traz um cliente filtrado pelo seu ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "ID do usuário."
+            "description": "ID do cliente."
           }
         ],
         "responses": {
@@ -92,6 +96,7 @@
         "tags": [
           "Cliente"
         ],
+        "summary": "Atualiza um cliente.",
         "description": "Atualiza um cliente.",
         "parameters": [
           {
@@ -99,7 +104,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "ID do usuário."
+            "description": "ID do cliente."
           }
         ],
         "responses": {
@@ -115,6 +120,7 @@
         "tags": [
           "Cliente"
         ],
+        "summary": "Deleta um cliente.",
         "description": "Deleta um cliente.",
         "parameters": [
           {
@@ -122,7 +128,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "ID do usuário."
+            "description": "ID do cliente."
           }
         ],
         "responses": {
