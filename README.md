@@ -9,6 +9,9 @@
 - ou
 - npm start
 
+# Para acessar a documentação swagger
+- http://localhost:3000/docs
+
 # Recursos
 ## Clientes
 - Listar todos os clientes ( GET - http://localhost:3000/cliente )
