@@ -10,7 +10,7 @@
 - npm start
 
 # Para acessar a documentação swagger
-- http://localhost:3000/docs
+- http://localhost:3000/api-docs
 
 # Recursos
 ## Clientes
@@ -31,4 +31,7 @@
 - Deletar um usuário ( DELETE - http://localhost:3000/cliente/1 )
 
 # Referencias
+- https://swagger.io/specification/v2/
 - https://swagger.io/docs/specification/grouping-operations-with-tags/
+- https://www.npmjs.com/package/swagger-jsdoc
+- https://github.com/Surnet/swagger-jsdoc/blob/v7/docs/FIRST-STEPS.md
