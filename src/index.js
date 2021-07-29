@@ -1,2 +1,2 @@
-const restapi = require('./services/restapi/RestApi');
+const restapi = require('./controllers/RestApi');
 restapi();
