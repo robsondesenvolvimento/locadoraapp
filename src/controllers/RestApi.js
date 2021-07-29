@@ -33,7 +33,7 @@ const restapi = () => {
       produces: ['application/json'],
     },
     explorer: true,
-    apis: ['./src/services/restapi/RestApiCliente.js'], // files containing annotations as above
+    apis: ['./src/controllers/RestApiCliente.js'], // files containing annotations as above
   };
   
   const openapiSpecification = swaggerJsdoc(options);
@@ -41,8 +41,8 @@ const restapi = () => {
 
   app.use(express.json());
 
-  const rotasCliente = require("./RestApiCliente");
-  app.use('/', rotasCliente)
+  const routing = require('../routers/Routers');
+  app.use('/', routing);
 
   app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`);

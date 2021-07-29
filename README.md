@@ -35,3 +35,4 @@
 - https://swagger.io/docs/specification/grouping-operations-with-tags/
 - https://www.npmjs.com/package/swagger-jsdoc
 - https://github.com/Surnet/swagger-jsdoc/blob/v7/docs/FIRST-STEPS.md
+- https://nodemon.io/

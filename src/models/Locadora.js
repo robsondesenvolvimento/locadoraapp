@@ -4,7 +4,7 @@ class Locadora {
         this._codigo = Locadora.codigo = Locadora.codigo ? Locadora.codigo += 1 : 1;
         Object.assign(this, {_codigoCliente, _codigoVeiculo});
         this._dataLocacao = new Date(Date.now());
-        Object.freeze(this);
+        //Object.freeze(this);
     }
 
     get codigo(){

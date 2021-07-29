@@ -4,7 +4,11 @@
   "description": "Trabalho para a materia de Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robsondesenvolvimento/locadoraapp.git"
   },
   "author": "Robson Candido dos Santos Alves <contato@robsonalves.dev.br> (https://www.robsonalves.dev.br)",
   "license": "ISC",
