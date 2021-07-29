@@ -35,9 +35,9 @@ clientes.push(new Cliente('Robson dos Santos', '1980-08-29', getEndereco()));
 clientes.push(new Cliente('Robson Henrique Casagrande', '1980-08-29', getEndereco()));
 
 let locacoes = new Array();
-locacoes.push(new Locadora(1, 1));
-locacoes.push(new Locadora(2, 4));
-locacoes.push(new Locadora(3, 2));
-locacoes.push(new Locadora(4, 3));
+locacoes.push(new Locadora(1, 1, '2021-05-01', 100.00));
+locacoes.push(new Locadora(2, 4, '2021-06-01', 54.00));
+locacoes.push(new Locadora(3, 2, '2021-07-01', 60.00));
+locacoes.push(new Locadora(4, 3, '2021-04-01', 20.00));
 
 module.exports = { veiculos, clientes, locacoes }
