@@ -1,3 +1,10 @@
+const axios = require('axios');
+
+
+async function requestCep(cep){
+  return await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+}
+
 module.exports = () => {
   
   const ClienteRepository = require("../repository/ClienteRepository");
@@ -22,7 +29,7 @@ module.exports = () => {
    *           schema: 
    *             $ref: "#/definitions/Cliente"
    */
-  clienteController.todos = (req, res) => {
+  clienteController.getTodos = (req, res) => {
     res.status(200).json(clienteRepository.getAll());
   };
 
@@ -51,7 +58,7 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.filtroNome = (req, res) => {
+  clienteController.getFiltroNome = (req, res) => {
     const cls = clienteRepository.getByName(req.query["nome"]);
     (cls == undefined || cls.length == 0) ? res.status(204).send() : res.status(200).json(cls);
   }
@@ -81,7 +88,7 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.id = (req, res) => {
+  clienteController.getId = (req, res) => {
     const cli = clienteRepository.getById(req.params.id);
     (cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
   }
@@ -103,7 +110,7 @@ module.exports = () => {
    *         description: "Cliente"
    *         require: true
    *         schema:
-   *           $ref: "#/definitions/Cliente"
+   *           $ref: "#/definitions/ClienteViewModel"
    *       responses:
    *         200:
    *           description: "Obter lista de clientes."
@@ -112,8 +119,10 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.inserir = (req, res) => {
-    const cli = clienteRepository.postClient(req.body);
+  clienteController.postInserir = async (req, res) => {
+    var endereco = await requestCep(req.body.cep)    
+      .then(resp => resp.data);
+    const cli = clienteRepository.postClient(req.body, endereco);
     res.status(201).json(cli);
   }
 
@@ -147,8 +156,10 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.atualizar = (req, res) => {
-    const cli = clienteRepository.putClient(req.params.id, req.body);
+  clienteController.putAtualizar = async (req, res) => {
+    var endereco = await requestCep(req.body.cep)    
+      .then(resp => resp.data);
+    const cli = clienteRepository.putClient(req.params.id, req.body, endereco);
     (cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
   }
 
@@ -173,7 +184,7 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados ou excluido com sucesso."
    */
-  clienteController.deletar = (req, res) => {
+  clienteController.deleteDeletar = (req, res) => {
     clienteRepository.deleteClient(req.params.id);
     res.status(204).send();
   }
@@ -191,12 +202,42 @@ module.exports = () => {
    *         type: "string"
    *         format: "date-time"
    *         description: "Data de nascimento do cliente."
-   *       cidade:
+   *       endereco:
+   *         type: "object"
+   *         properties:
+   *           cep:
+   *             type: "string"
+   *           logradouro:
+   *             type: "string"
+   *           complemento:
+   *             type: "string"
+   *           bairro:
+   *             type: "string"
+   *           localidade:
+   *             type: "string"
+   *           uf:
+   *             type: "string"
+   *           ibge:
+   *             type: "string"
+   *           gia:
+   *             type: "string"
+   *           ddd:
+   *             type: "string"
+   *           siafi:
+   *             type: "string"
+   *   ClienteViewModel:
+   *     type: "object"
+   *     properties:
+   *       nome:
    *         type: "string"
-   *         description: "Cidade do cliente"
-   *       estado:
+   *         description: "Nome do cliente"
+   *       anoNascimento:
    *         type: "string"
-   *         description: "Estado do cliente"
+   *         format: "date-time"
+   *         description: "Data de nascimento do cliente."
+   *       cep:
+   *         type: "string"
+   *         description: "CEP do endereço do cliente."
    */
 
   return clienteController;

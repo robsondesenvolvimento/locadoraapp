@@ -1,13 +1,11 @@
 class Cliente {
 
-    constructor(_nome,_anoNascimento,_cidade,_estado){
+    constructor(_nome,_anoNascimento,_endereco){
         this._codigo = Cliente.codigo = Cliente.codigo ? Cliente.codigo += 1 : 1;
-        Object.assign(this, {_nome,_cidade,_estado});
-        this._anoNascimento = new Date(_anoNascimento);        
+        this._anoNascimento = new Date(_anoNascimento); 
+        Object.assign(this, {_nome,_endereco});               
         //Object.freeze(this);
-    }
-
-    
+    }    
 
     get codigo(){
         return this._codigo;
@@ -28,18 +26,11 @@ class Cliente {
         this._anoNascimento = new Date(valor);
     }    
 
-    get cidade(){
-        return this._cidade;
+    get endereco(){
+        return this._endereco;
     }
-    set cidade(valor){
-        this._cidade = valor;
-    }
-
-    get estado(){
-        return this._estado;
-    }
-    set estado(value){
-        this._estado = value;
+    set endereco(valor){
+        this._endereco = valor;
     }
 }
 
