@@ -1,4 +1,4 @@
-const pg = require('pg');
+const { Client } = require('pg');
 
 const config = {
     host: '127.0.0.1',
@@ -9,28 +9,22 @@ const config = {
     ssl: false
 };
 
-const client = new pg.Client(config);
-client.connect(err => {
-    if (err) throw err;
-});
+const client = new Client(config);
 
-async function rrr(qq){
-    return await client.query(qq);
-}
+module.exports = async () => {
 
-module.exports = () => {
+    await client.connect();
 
-    const controllerDatabase = {};
-
-    
+    const controllerDatabase = {};    
 
     controllerDatabase.select = async (query) => {
-        var dados = await rrr(query).then(x => x.rows);
-        return dados;
+        var dados = await client.query(query);
+        return dados.rows;
     }
 
     return controllerDatabase;
 }
+
 // const config = {
 //     host: '127.0.0.1',
 //     // Do not hard code your username and password.
