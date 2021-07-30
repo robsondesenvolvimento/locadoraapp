@@ -18,3 +18,4 @@
 - https://www.npmjs.com/package/swagger-jsdoc
 - https://github.com/Surnet/swagger-jsdoc/blob/v7/docs/FIRST-STEPS.md
 - https://nodemon.io/
+- https://docs.microsoft.com/pt-br/azure/postgresql/connect-nodejs
