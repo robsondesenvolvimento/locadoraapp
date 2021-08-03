@@ -5,6 +5,8 @@ let { clientes } = require("../utils/Actors");
 
 class ClienteRepository {
 
+    controller = {} 
+
     toViewModel(dados){
         var cliente = new ClienteViewModel(dados.codigo, dados.nome, dados.anoNascimento, new EnderecoViewModel(
             dados.endereco.cep, 
@@ -24,7 +26,7 @@ class ClienteRepository {
 
     getAll(){
         return clientes.map((x) => this.toViewModel(x));
-    }
+    }    
 
     getById(id){
         const indexCliente = clientes.findIndex(c => c.codigo == id);
