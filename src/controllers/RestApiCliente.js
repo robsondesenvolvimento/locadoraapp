@@ -10,6 +10,8 @@ module.exports = () => {
   const ClienteRepository = require("../repository/ClienteRepository");
   const clienteRepository = new ClienteRepository();
 
+  const repCli = require('../repository/Cliente.Repository')();
+
   const clienteController = {}
 
   /**
@@ -30,7 +32,9 @@ module.exports = () => {
    *             $ref: "#/definitions/Cliente"
    */
   clienteController.getTodos = (req, res) => {
-    res.status(200).json(clienteRepository.getAll());
+    repCli.listar((clients) => {
+      res.status(200).json(clients);
+    })
   };
 
   /**
@@ -59,8 +63,9 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.getFiltroNome = (req, res) => {
-    const cls = clienteRepository.getByName(req.query["nome"]);
-    (cls == undefined || cls.length == 0) ? res.status(204).send() : res.status(200).json(cls);
+    repCli.nome((client) => {
+      (client == undefined || client.length == 0) ? res.status(204).send() : res.status(200).json(client);
+    }, req.query["nome"]);
   }
 
   /**
@@ -89,8 +94,10 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.getId = (req, res) => {
-    const cli = clienteRepository.getById(req.params.id);
-    (cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
+    var codigo = req.params.id;
+    repCli.id((client) => {
+      (client == undefined) ? res.status(204).send() : res.status(200).json(client);
+    }, codigo);
   }
 
   /**
