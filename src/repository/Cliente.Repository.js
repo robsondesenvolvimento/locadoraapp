@@ -76,5 +76,15 @@ module.exports = () => {
         })
     }
 
+    repository.post = (cliente, endereco) => {
+        conexao.query('insert into cliente SET ?)', { nome: cliente.nome, ano_nascimento: cliente.anoNascimento, endereco: cliente.endereco }, (error, results, fields) => {
+            if(error) {
+                console.log(error);
+                return;
+            }
+            return cliente(results);
+        });
+    }
+
     return repository;
 }

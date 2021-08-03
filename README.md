@@ -7,7 +7,7 @@
 
 # Para iniciar a aplicação
 - Install Mysql no docker
-- docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:tag
+- docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:tag
 -
 - yarn start
 - ou
