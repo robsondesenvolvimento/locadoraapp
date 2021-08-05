@@ -2,6 +2,7 @@ const axios = require('axios');
 
 
 async function requestCep(cep){
+  cep = cep.replace('-', '');
   return await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
 }
 
@@ -126,13 +127,13 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.postInserir = (req, res) => {
-    //var endereco = await requestCep(req.body.cep)    
-    //  .then(resp => resp.data);
+  clienteController.postInserir = async (req, res) => {
+    var endereco = await requestCep(req.body.cep)    
+      .then(resp => resp.data);
 
     repCli.post((client) => {
       (client == undefined) ? res.status(204).send() : res.status(201).json(client);
-    }, req.body);
+    }, req.body, endereco);
 
     //const cli = clienteRepository.postClient(req.body, endereco);
     //res.status(201).json(cli);

@@ -6,17 +6,17 @@ module.exports = () => {
 
     const repository = {}
 
-    function toViewModel(dados){
+    function toViewModel(dados) {
         var cliente = new ClienteViewModel(dados.codigo, dados.nome, dados.anoNascimento, new EnderecoViewModel(
-            dados.cep, 
-            dados.logradouro, 
-            dados.complemento, 
-            dados.bairro, 
-            dados.localidade, 
-            dados.uf, 
-            dados.ibge, 
-            dados.gia, 
-            dados.ddd, 
+            dados.cep,
+            dados.logradouro,
+            dados.complemento,
+            dados.bairro,
+            dados.localidade,
+            dados.uf,
+            dados.ibge,
+            dados.gia,
+            dados.ddd,
             dados.siafi
         ));
 
@@ -34,7 +34,7 @@ module.exports = () => {
             if (err) {
                 console.log(err)
                 return;
-            }          
+            }
             var lista = rows.map((x) => toViewModel(x));
             return callback(lista)
         })
@@ -52,7 +52,7 @@ module.exports = () => {
             if (err) {
                 console.log(err)
                 return;
-            }          
+            }
             var lista = toViewModel(rows[0]);
             return callback(lista)
         })
@@ -70,15 +70,22 @@ module.exports = () => {
             if (err) {
                 console.log(err)
                 return;
-            }          
+            }
             const listaCli = rows.map((x) => toViewModel(x));
             return callback(listaCli)
         })
     }
 
-    repository.post = (callback, cliente) => {
-        conexao.query("INSERT INTO `cliente` SET ?", { nome: 'Robson', ano_nascimento: '2021-08-04', endereco: '80210-110' }, (error, results, fields) => {
-            if(error) {
+    repository.post = (callback, cliente, endereco) => {
+        conexao.query("INSERT INTO `endereco` SET ?", endereco, (error, results, fields) => {
+            if (error){
+                console.log(error);
+                return
+            }
+        });
+
+        conexao.query("INSERT INTO `cliente` SET ?", { nome: cliente.nome, ano_nascimento: cliente.anoNascimento, endereco: cliente.cep }, (error, results, fields) => {
+            if (error) {
                 console.log(error);
                 return;
             }
@@ -92,14 +99,14 @@ module.exports = () => {
                 inner join locadora.endereco e on c.endereco = e.cep 
                 where c.codigo = ${id}`;
 
-        conexao.query(selectString ,function (err, rows) {
-            if (err) {
-                console.log(err)
-                return;
-            }          
-            var lista = rows.map((x) => toViewModel(x));
-            return callback(lista)
-        })
+            conexao.query(selectString, function (err, rows) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                var lista = rows.map((x) => toViewModel(x));
+                return callback(lista)
+            })
         });
     }
 
