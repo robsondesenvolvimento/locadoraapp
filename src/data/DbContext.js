@@ -6,7 +6,8 @@ var mysql = require('mysql2');
         host: 'localhost',
         user: 'root',
         password: '123456',
-        database: 'locadora'
+        database: 'locadora',
+        insecureAuth : true
     });
 
     connection.connect(function (err) {
