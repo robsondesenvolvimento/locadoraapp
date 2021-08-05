@@ -1,10 +1,13 @@
 const express = require("express");
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const configuration = require('../config/configuration');
 
-const restapi = () => {  
+
+const restapi = () => {
+
   const app = express();
-  const port = 3000;
+  const port = configuration.express.port;
 
   const options = {
     definition: {
