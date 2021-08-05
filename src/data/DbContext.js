@@ -1,13 +1,15 @@
 var mysql = require('mysql2');
+const configuration = require('../config/configuration');
 
  module.exports = () => {
 
     connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '123456',
-        database: 'locadora',
-        insecureAuth : true
+        host: configuration.mysql.host,
+        port: configuration.mysql.port,
+        user: configuration.mysql.user,
+        password: configuration.mysql.password,
+        database: configuration.mysql.database,
+        insecureAuth : configuration.mysql.insecureAuth
     });
 
     connection.connect(function (err) {
