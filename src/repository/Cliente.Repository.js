@@ -76,13 +76,30 @@ module.exports = () => {
         })
     }
 
-    repository.post = (cliente, endereco) => {
-        conexao.query('insert into cliente SET ?)', { nome: cliente.nome, ano_nascimento: cliente.anoNascimento, endereco: cliente.endereco }, (error, results, fields) => {
+    repository.post = (callback, cliente) => {
+        conexao.query("INSERT INTO `cliente` SET ?", { nome: 'Robson', ano_nascimento: '2021-08-04', endereco: '80210-110' }, (error, results, fields) => {
             if(error) {
                 console.log(error);
                 return;
             }
-            return cliente(results);
+
+            var id = results.insertId;
+
+            let selectString = `
+                select 
+                c.*, e.* 
+                from locadora.cliente c 
+                inner join locadora.endereco e on c.endereco = e.cep 
+                where c.codigo = ${id}`;
+
+        conexao.query(selectString ,function (err, rows) {
+            if (err) {
+                console.log(err)
+                return;
+            }          
+            var lista = rows.map((x) => toViewModel(x));
+            return callback(lista)
+        })
         });
     }
 

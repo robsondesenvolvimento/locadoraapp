@@ -126,11 +126,16 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.postInserir = async (req, res) => {
-    var endereco = await requestCep(req.body.cep)    
-      .then(resp => resp.data);
-    const cli = clienteRepository.postClient(req.body, endereco);
-    res.status(201).json(cli);
+  clienteController.postInserir = (req, res) => {
+    //var endereco = await requestCep(req.body.cep)    
+    //  .then(resp => resp.data);
+
+    repCli.post((client) => {
+      (client == undefined) ? res.status(204).send() : res.status(201).json(client);
+    }, req.body);
+
+    //const cli = clienteRepository.postClient(req.body, endereco);
+    //res.status(201).json(cli);
   }
 
   /**
