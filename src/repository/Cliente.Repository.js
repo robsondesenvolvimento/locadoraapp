@@ -77,22 +77,20 @@ module.exports = () => {
     }
 
     repository.post = (callback, cliente) => {
-        var id = 1;
-        conexao.query("insert into `locadora.cliente` SET ?", { nome: 'Robson', ano_nascimento: '2021-08-04', endereco: '80210-110' }, (error, results, fields) => {
-    //conexao.query("insert into locadora.cliente (`nome`,`ano_nascimento`,`endereco`) values ('Robson', '2021-08-04' ,'80210-110')", (error, results, fields) => {
+        conexao.query("INSERT INTO `cliente` SET ?", { nome: 'Robson', ano_nascimento: '2021-08-04', endereco: '80210-110' }, (error, results, fields) => {
             if(error) {
                 console.log(error);
                 return;
             }
-            return results.insertId;
-        });
 
-        let selectString = `
-        select 
-          c.*, e.* 
-        from locadora.cliente c 
-        inner join locadora.endereco e on c.endereco = e.cep 
-        where c.codigo = ${id}}`;
+            var id = results.insertId;
+
+            let selectString = `
+                select 
+                c.*, e.* 
+                from locadora.cliente c 
+                inner join locadora.endereco e on c.endereco = e.cep 
+                where c.codigo = ${id}`;
 
         conexao.query(selectString ,function (err, rows) {
             if (err) {
@@ -102,6 +100,7 @@ module.exports = () => {
             var lista = rows.map((x) => toViewModel(x));
             return callback(lista)
         })
+        });
     }
 
     return repository;

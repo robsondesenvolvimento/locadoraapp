@@ -126,7 +126,7 @@ module.exports = () => {
    *         204:
    *           description: "Clientes não localizados."
    */
-  clienteController.postInserir = async (req, res) => {
+  clienteController.postInserir = (req, res) => {
     //var endereco = await requestCep(req.body.cep)    
     //  .then(resp => resp.data);
 
