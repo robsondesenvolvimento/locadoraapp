@@ -7,6 +7,7 @@ const configuration = require('../config/configuration');
 const restapi = () => {
 
   const app = express();
+  const host = configuration.express.host;
   const port = configuration.express.port;
 
   const options = {
@@ -24,10 +25,10 @@ const restapi = () => {
       },
       servers: [
         {
-          url: "http://localhost:3000/",
+          url: `http://${host}:${port}/`,
         }
       ],
-      host: `localhost:${port}`,
+      host: `${host}:${port}`,
       basePath: "/",
       swagger: "2.0",
       //schemes: ['http', 'https'],
@@ -49,8 +50,8 @@ const restapi = () => {
   app.use('/', routing);
 
   app.listen(port, () => {
-    console.log(`app listening at http://localhost:${port}`);
-    console.log(`Documentation swagger at http://localhost:${port}/api-docs`);
+    console.log(`app listening at http://${host}:${port}/`);
+    console.log(`Documentation swagger at http://${host}:${port}/api-docs`);
   });
 };
 

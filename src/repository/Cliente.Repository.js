@@ -35,8 +35,13 @@ module.exports = () => {
                 console.log(err)
                 return;
             }
-            var lista = rows.map((x) => toViewModel(x));
-            return callback(lista)
+            if (rows != undefined && rows.length > 0){
+                var lista = rows.map((x) => toViewModel(x));
+                return callback(lista)
+            }
+            else{
+                return callback(undefined);
+            }
         })
     }
 
@@ -53,8 +58,13 @@ module.exports = () => {
                 console.log(err)
                 return;
             }
-            var lista = toViewModel(rows[0]);
-            return callback(lista)
+            if (rows != undefined && rows.length > 0){
+                var lista = toViewModel(rows[0]);
+                return callback(lista);
+            }
+            else{
+                return callback(undefined);
+            }
         })
     }
 
@@ -78,7 +88,7 @@ module.exports = () => {
 
     repository.post = (callback, cliente, endereco) => {
         conexao.query("INSERT INTO `endereco` SET ?", endereco, (error, results, fields) => {
-            if (error){
+            if (error) {
                 console.log(error);
                 return
             }
@@ -109,6 +119,47 @@ module.exports = () => {
             })
         });
     }
+
+    repository.atualizar = (callback, idCli, cliente, endereco) => {
+        conexao.query("INSERT INTO `endereco` SET ?", endereco, (error, results, fields) => {
+            if (error) {
+                console.log(error);
+                return
+            }
+        });
+
+        conexao.query("UPDATE `cliente` SET nome = ?, ano_nascimento = ?, endereco = ? WHERE codigo = ?", [cliente.nome, cliente.anoNascimento, cliente.cep , idCli], (error, results, fields) => {
+            if (error) {
+                console.log(error)
+                return
+            }
+
+            let selectString = `
+                select 
+                c.*, e.* 
+                from locadora.cliente c 
+                inner join locadora.endereco e on c.endereco = e.cep 
+                where c.codigo = ${idCli}`;
+
+            conexao.query(selectString, function (err, rows) {
+                if (err) {
+                    console.log(err)
+                    return;
+                }
+                var lista = rows.map((x) => toViewModel(x));
+                return callback(lista)
+            })
+        });
+    }
+
+    repository.deletar = (idCli) => {
+        conexao.query("DELETE FROM `cliente` WHERE codigo = ?", [idCli], (error, results, fields) => {
+            if (error) {
+                console.log(error);
+                return
+            }
+        });
+    };
 
     return repository;
 }

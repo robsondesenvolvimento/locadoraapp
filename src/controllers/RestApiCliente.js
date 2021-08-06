@@ -7,11 +7,8 @@ async function requestCep(cep){
 }
 
 module.exports = () => {
-  
-  const ClienteRepository = require("../repository/ClienteRepository");
-  const clienteRepository = new ClienteRepository();
 
-  const repCli = require('../repository/Cliente.Repository')();
+  const repositorioCliente = require('../repository/Cliente.Repository')();
 
   const clienteController = {}
 
@@ -33,7 +30,7 @@ module.exports = () => {
    *             $ref: "#/definitions/Cliente"
    */
   clienteController.getTodos = (req, res) => {
-    repCli.listar((clients) => {
+    repositorioCliente.listar((clients) => {
       res.status(200).json(clients);
     })
   };
@@ -64,7 +61,7 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.getFiltroNome = (req, res) => {
-    repCli.nome((client) => {
+    repositorioCliente.nome((client) => {
       (client == undefined || client.length == 0) ? res.status(204).send() : res.status(200).json(client);
     }, req.query["nome"]);
   }
@@ -96,7 +93,7 @@ module.exports = () => {
    */
   clienteController.getId = (req, res) => {
     var codigo = req.params.id;
-    repCli.id((client) => {
+    repositorioCliente.id((client) => {
       (client == undefined) ? res.status(204).send() : res.status(200).json(client);
     }, codigo);
   }
@@ -131,7 +128,7 @@ module.exports = () => {
     var endereco = await requestCep(req.body.cep)    
       .then(resp => resp.data);
 
-    repCli.post((client) => {
+    repositorioCliente.post((client) => {
       (client == undefined) ? res.status(204).send() : res.status(201).json(client);
     }, req.body, endereco);
 
@@ -172,8 +169,12 @@ module.exports = () => {
   clienteController.putAtualizar = async (req, res) => {
     var endereco = await requestCep(req.body.cep)    
       .then(resp => resp.data);
-    const cli = clienteRepository.putClient(req.params.id, req.body, endereco);
-    (cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
+    
+      repositorioCliente.atualizar((client) => {
+        (client == undefined) ? res.status(204).send() : res.status(201).json(client);
+      }, req.params.id, req.body, endereco);
+    //const cli = clienteRepository.putClient(req.params.id, req.body, endereco);
+    //(cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
   }
 
   /**
@@ -198,7 +199,8 @@ module.exports = () => {
    *           description: "Clientes não localizados ou excluido com sucesso."
    */
   clienteController.deleteDeletar = (req, res) => {
-    clienteRepository.deleteClient(req.params.id);
+    //clienteRepository.deleteClient(req.params.id);
+    repositorioCliente.deletar(req.params.id);
     res.status(204).send();
   }
 
