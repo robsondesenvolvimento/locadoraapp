@@ -4,7 +4,8 @@
   "description": "Trabalho para a materia de Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start-dev": "NODE_ENV=dev nodemon src/index.js",
+    "start-prod": "NODE_ENV=prod nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "win-node-env": "^0.4.0"
   }
 }

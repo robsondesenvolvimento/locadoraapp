@@ -9,9 +9,9 @@
 - Install Mysql no docker
 - docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:tag
 -
-- yarn start
+- yarn [start-dev | start-prod]
 - ou
-- npm start
+- npm run [start-dev | start-prod]
 
 # Tabelas do banco de dados
 ```sql
