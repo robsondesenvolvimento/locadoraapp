@@ -1,16 +1,15 @@
+/* eslint-disable max-len */
 const axios = require('axios');
+const repositorioCliente = require('../repository/cliente.repository')();
 
-
-async function requestCep(cep){
-  cep = cep.replace('-', '');
-  return await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+async function requestCep(cep) {
+  const novoCep = cep.replace('-', '');
+  const dadosCep = await axios.get(`https://viacep.com.br/ws/${novoCep}/json/`);
+  return dadosCep;
 }
 
 module.exports = () => {
-
-  const repositorioCliente = require('../repository/Cliente.Repository')();
-
-  const clienteController = {}
+  const clienteController = {};
 
   /**
    * @swagger
@@ -26,13 +25,13 @@ module.exports = () => {
    *       responses:
    *         200:
    *           description: "Obter lista de clientes."
-   *           schema: 
+   *           schema:
    *             $ref: "#/definitions/Cliente"
    */
   clienteController.getTodos = (req, res) => {
     repositorioCliente.listar((clients) => {
       res.status(200).json(clients);
-    })
+    });
   };
 
   /**
@@ -62,9 +61,12 @@ module.exports = () => {
    */
   clienteController.getFiltroNome = (req, res) => {
     repositorioCliente.nome((client) => {
-      (client == undefined || client.length == 0) ? res.status(204).send() : res.status(200).json(client);
-    }, req.query["nome"]);
-  }
+      // eslint-disable-next-line no-unused-expressions
+      client === undefined || client.length === 0
+        ? res.status(204).send()
+        : res.status(200).json(client);
+    }, req.query.nome);
+  };
 
   /**
    * @swagger
@@ -92,11 +94,14 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.getId = (req, res) => {
-    var codigo = req.params.id;
+    const codigo = req.params.id;
     repositorioCliente.id((client) => {
-      (client == undefined) ? res.status(204).send() : res.status(200).json(client);
+      // eslint-disable-next-line no-unused-expressions
+      client === undefined
+        ? res.status(204).send()
+        : res.status(200).json(client);
     }, codigo);
-  }
+  };
 
   /**
    * @swagger
@@ -125,16 +130,19 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.postInserir = async (req, res) => {
-    var endereco = await requestCep(req.body.cep)    
-      .then(resp => resp.data);
+    const endereco = await requestCep(req.body.cep).then((resp) => resp.data);
 
-    repositorioCliente.post((client) => {
-      (client == undefined) ? res.status(204).send() : res.status(201).json(client);
-    }, req.body, endereco);
-
-    //const cli = clienteRepository.postClient(req.body, endereco);
-    //res.status(201).json(cli);
-  }
+    repositorioCliente.post(
+      (client) => {
+        // eslint-disable-next-line no-unused-expressions
+        client === undefined
+          ? res.status(204).send()
+          : res.status(201).json(client);
+      },
+      req.body,
+      endereco
+    );
+  };
 
   /**
    * @swagger
@@ -167,15 +175,20 @@ module.exports = () => {
    *           description: "Clientes não localizados."
    */
   clienteController.putAtualizar = async (req, res) => {
-    var endereco = await requestCep(req.body.cep)    
-      .then(resp => resp.data);
-    
-      repositorioCliente.atualizar((client) => {
-        (client == undefined) ? res.status(204).send() : res.status(201).json(client);
-      }, req.params.id, req.body, endereco);
-    //const cli = clienteRepository.putClient(req.params.id, req.body, endereco);
-    //(cli == undefined) ? res.status(204).send() : res.status(200).json(cli);
-  }
+    const endereco = await requestCep(req.body.cep).then((resp) => resp.data);
+
+    repositorioCliente.atualizar(
+      (client) => {
+        // eslint-disable-next-line no-unused-expressions
+        client === undefined
+          ? res.status(204).send()
+          : res.status(201).json(client);
+      },
+      req.params.id,
+      req.body,
+      endereco
+    );
+  };
 
   /**
    * @swagger
@@ -199,10 +212,9 @@ module.exports = () => {
    *           description: "Clientes não localizados ou excluido com sucesso."
    */
   clienteController.deleteDeletar = (req, res) => {
-    //clienteRepository.deleteClient(req.params.id);
     repositorioCliente.deletar(req.params.id);
     res.status(204).send();
-  }
+  };
 
   /**
    * @swagger
@@ -256,4 +268,4 @@ module.exports = () => {
    */
 
   return clienteController;
-}
+};

@@ -1,9 +1,10 @@
+const LocacaoRepository = require('../repository/locadorarepository');
+
 module.exports = () => {
-  
-    const LocacaoRepository = require("../repository/LocacaoRepository");
-    const locacaoRepository = new LocacaoRepository();
-  
-    const locacaoController = {}
+  const locacaoRepository = new LocacaoRepository();
+
+  const locacaoController = {};
+
   /**
    * @swagger
    * paths:
@@ -18,10 +19,10 @@ module.exports = () => {
    *       responses:
    *         200:
    *           description: "Obter lista de locações."
-   *           schema: 
+   *           schema:
    *             $ref: "#/definitions/Locadora"
    */
-   locacaoController.getTodos = (req, res) => {
+  locacaoController.getTodos = (req, res) => {
     res.status(200).json(locacaoRepository.getAll());
   };
 
@@ -42,7 +43,7 @@ module.exports = () => {
    *       veiculo:
    *         type: number
    *         format: int32
-   *         description: "Código do veículo"       
+   *         description: "Código do veículo"
    *       dataLocacao:
    *         type: "string"
    *         format: "date-time"
@@ -58,5 +59,4 @@ module.exports = () => {
    */
 
   return locacaoController;
-
-}
+};
