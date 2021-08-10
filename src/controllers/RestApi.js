@@ -38,7 +38,8 @@ const restapi = () => {
     },
     explorer: true,
     apis: ['./src/controllers/RestApiCliente.js',
-           './src/controllers/RestApiLocadora.js'], // files containing annotations as above
+           './src/controllers/RestApiLocadora.js',
+           './src/controllers/RestApiVeiculo.js'], // files containing annotations as above
   };
   
   const openapiSpecification = swaggerJsdoc(options);
