@@ -3,11 +3,11 @@
 
 # Requerimentos
 - Node.js 14.x.x
-- Potgres
+- MySQL
 
 # Para iniciar a aplicação
 - Install Mysql no docker
-- docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:tag
+- docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:latest
 -
 - yarn [start-dev | start-prod]
 - ou
@@ -23,7 +23,7 @@ CREATE TABLE `cliente` (
   PRIMARY KEY (`codigo`),
   KEY `cliente_FK` (`endereco`),
   CONSTRAINT `cliente_FK` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`cep`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabela de clientes';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabela de clientes';
 ```
 
 ```sql
@@ -54,19 +54,79 @@ CREATE TABLE `veiculo` (
 ```
 
 ```json
-POST /clientes
-PUT  /clientes/{codigo}
+-------------------------------------------------------------------------------
+GET  /cliente
+-------------------------------------------------------------------------------
+[
+    {
+        "codigo": 1,
+        "nome": "Robson Candido dos Santos Alves",
+        "endereco": {
+            "cep": "80210-110",
+            "logradouro": "Rua Paschoal Bordignon",
+            "complemento": "",
+            "bairro": "Jardim Botânico",
+            "localidade": "Curitiba",
+            "uf": "PR",
+            "ibge": "4106902",
+            "gia": "",
+            "ddd": "41",
+            "siafi": "7535"
+        }
+    },
+    {
+        "codigo": 2,
+        "nome": "Henrique Casagrande dos Santos Alves",
+        "endereco": {
+            "cep": "82820-230",
+            "logradouro": "Rua José Lins do Rego",
+            "complemento": "",
+            "bairro": "Bairro Alto",
+            "localidade": "Curitiba",
+            "uf": "PR",
+            "ibge": "4106902",
+            "gia": "",
+            "ddd": "41",
+            "siafi": "7535"
+        }
+    }
+]
 
+-------------------------------------------------------------------------------
+POST /cliente
+PUT  /cliente/{codigo}
+-------------------------------------------------------------------------------
 {
-    "nome": "Nome do fulano de tal.",
-    "cep": "80210-110",
-    "anoNascimento": "2019-08-21"
+    "nome": "Robson Candido dos Santos Alves",
+    "anoNascimento": "1980-08-29",
+    "cep": "80210-110"
 }
 ```
 
 ```json
-POST /veiculo
+-------------------------------------------------------------------------------
+GET  /veiculo
+-------------------------------------------------------------------------------
+[
+    {
+        "codigo": 1,
+        "marca": "Chevrollet",
+        "modelo": "Cruze",
+        "ano": 2017,
+        "valor": 150000
+    },
+    {
+        "codigo": 2,
+        "marca": "Chevrollet",
+        "modelo": "Onix",
+        "ano": 2017,
+        "valor": 80000
+    }
+]
 
+-------------------------------------------------------------------------------
+POST /veiculo
+-------------------------------------------------------------------------------
 {
     "marca": "Chevrollet",
     "modelo": "Cruze",

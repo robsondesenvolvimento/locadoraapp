@@ -1,7 +1,7 @@
 const routing = require('express').Router();
-const clienteController = require('../controllers/RestApiCliente')();
-const locadoraController = require('../controllers/RestApiLocadora')();
-const veiculoController = require('../controllers/RestApiVeiculo')();
+const clienteController = require('../controllers/restapi-client')();
+const locadoraController = require('../controllers/restapi-locadora')();
+const veiculoController = require('../controllers/restapi-veiculo')();
 
 routing.get('/cliente', clienteController.getTodos);
 routing.get('/cliente/filtro', clienteController.getFiltroNome);
@@ -12,7 +12,7 @@ routing.delete('/cliente/:id', clienteController.deleteDeletar);
 
 routing.get('/locadora', locadoraController.getTodos);
 
-routing.get('/veiculo', veiculoController.getTodos)
-routing.post('/veiculo', veiculoController.postInserir)
+routing.get('/veiculo', veiculoController.getTodos);
+routing.post('/veiculo', veiculoController.postInserir);
 
 module.exports = routing;

@@ -1,9 +1,6 @@
-const axios = require('axios');
+const repositorioVeiculos = require('../repository/veiculo.repository')();
 
 module.exports = () => {
-
-  const repositorioVeiculos = require('../repository/Veiculo.Repository')();
-
   const veiculoController = {};
 
   /**
@@ -20,13 +17,13 @@ module.exports = () => {
    *       responses:
    *         200:
    *           description: "Obter lista de veiculos."
-   *           schema: 
+   *           schema:
    *             $ref: "#/definitions/VeiculoViewModel"
    */
-   veiculoController.getTodos = (req, res) => {
+  veiculoController.getTodos = (req, res) => {
     repositorioVeiculos.listar((veiculos) => {
       res.status(200).json(veiculos);
-    })
+    });
   };
 
   /**
@@ -57,13 +54,15 @@ module.exports = () => {
    */
   veiculoController.postInserir = async (req, res) => {
     repositorioVeiculos.post((veiculo) => {
-      (veiculo == undefined) ? res.status(204).send() : res.status(201).json(veiculo);
+      const defVeiculo = veiculo === undefined;
+      // eslint-disable-next-line no-unused-expressions
+      defVeiculo ? res.status(204).send() : res.status(201).json(veiculo);
     }, req.body);
-  }
+  };
 
   /**
    * @swagger
-   * definitions:   
+   * definitions:
    *   VeiculoViewModel:
    *     type: "object"
    *     properties:
@@ -85,4 +84,4 @@ module.exports = () => {
    */
 
   return veiculoController;
-}
+};
