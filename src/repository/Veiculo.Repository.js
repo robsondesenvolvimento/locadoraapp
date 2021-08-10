@@ -10,6 +10,27 @@ module.exports = () => {
         return veiculo;
     }
 
+    repository.listar = (callback) => {
+        let selectString = `
+        select 
+          * 
+        from veiculo`;
+
+        conexao.query(selectString, function (err, rows) {
+            if (err) {
+                console.log(err)
+                return;
+            }
+            if (rows != undefined && rows.length > 0){
+                var lista = rows.map((x) => toViewModel(x));
+                return callback(lista)
+            }
+            else{
+                return callback(undefined);
+            }
+        })
+    }
+
     repository.post = (callback, veiculo) => {
         conexao.query("INSERT INTO `veiculo` SET ?", { marca: veiculo.marca, modelo: veiculo.modelo, ano: veiculo.ano, valor: veiculo.valor }, (error, results, fields) => {
             if (error) {

@@ -12,6 +12,7 @@ routing.delete('/cliente/:id', clienteController.deleteDeletar);
 
 routing.get('/locadora', locadoraController.getTodos);
 
+routing.get('/veiculo', veiculoController.getTodos)
 routing.post('/veiculo', veiculoController.postInserir)
 
 module.exports = routing;
