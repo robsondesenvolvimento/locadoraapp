@@ -23,7 +23,7 @@ CREATE TABLE `cliente` (
   PRIMARY KEY (`codigo`),
   KEY `cliente_FK` (`endereco`),
   CONSTRAINT `cliente_FK` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`cep`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabela de clientes';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='tabela de clientes';
 ```
 
 ```sql
@@ -40,6 +40,39 @@ CREATE TABLE `endereco` (
   `siafi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`cep`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+```sql
+CREATE TABLE `veiculo` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `marca` varchar(100) NOT NULL,
+  `modelo` varchar(100) NOT NULL,
+  `ano` int NOT NULL,
+  `valor` double NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+```
+
+```json
+POST /clientes
+PUT  /clientes/{codigo}
+
+{
+    "nome": "Nome do fulano de tal.",
+    "cep": "80210-110",
+    "anoNascimento": "2019-08-21"
+}
+```
+
+```json
+POST /veiculo
+
+{
+    "marca": "Chevrollet",
+    "modelo": "Cruze",
+    "ano": 2017,
+    "valor": 150000.00
+}
 ```
 
 # Para acessar a documentação swagger
