@@ -11,16 +11,16 @@ module.exports = () => {
    *   /locadora:
    *     get:
    *       tags:
-   *       - "Locadora"
-   *       summary: "Obter lista de locações."
-   *       description: "Obter lista de locações."
+   *       - 'Locadora'
+   *       summary: 'Obter lista de locações.'
+   *       description: 'Obter lista de locações.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       responses:
    *         200:
-   *           description: "Obter lista de locações."
+   *           description: 'Obter lista de locações.'
    *           schema:
-   *             $ref: "#/definitions/Locadora"
+   *             $ref: '#/definitions/Locadora'
    */
   locacaoController.getTodos = (req, res) => {
     res.status(200).json(locacaoRepository.getAll());
@@ -30,32 +30,32 @@ module.exports = () => {
    * @swagger
    * definitions:
    *   Locadora:
-   *     type: "object"
+   *     type: 'object'
    *     properties:
    *       codigo:
    *         type: number
    *         format: int32
-   *         description: "Código da locação"
+   *         description: 'Código da locação'
    *       cliente:
    *         type: number
    *         format: int32
-   *         description: "Código do cliente"
+   *         description: 'Código do cliente'
    *       veiculo:
    *         type: number
    *         format: int32
-   *         description: "Código do veículo"
+   *         description: 'Código do veículo'
    *       dataLocacao:
-   *         type: "string"
-   *         format: "date-time"
-   *         description: "Data de locação do veículo."
+   *         type: 'string'
+   *         format: 'date-time'
+   *         description: 'Data de locação do veículo.'
    *       valorDiaria:
    *         type: number
    *         format: double
-   *         description: "Valor da diaria de locação."
+   *         description: 'Valor da diaria de locação.'
    *       valorFechamento:
    *         type: number
    *         format: double
-   *         description: "Valor total dos dias de locação."
+   *         description: 'Valor total dos dias de locação.'
    */
 
   return locacaoController;

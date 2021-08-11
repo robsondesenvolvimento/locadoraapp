@@ -1,5 +1,5 @@
-const conexao = require("../data/dbcontext")();
-const VeiculoViewModel = require("../views/veiculo.viewmodel");
+const conexao = require('../data/dbcontext')();
+const VeiculoViewModel = require('../views/veiculo.viewmodel');
 
 module.exports = () => {
   const repository = {};
@@ -37,7 +37,7 @@ module.exports = () => {
 
   repository.post = (callback, veiculo) => {
     conexao.query(
-      "INSERT INTO `veiculo` SET ?",
+      'INSERT INTO `veiculo` SET ?',
       {
         marca: veiculo.marca,
         modelo: veiculo.modelo,

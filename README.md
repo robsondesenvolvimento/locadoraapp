@@ -59,35 +59,35 @@ GET  /cliente
 -------------------------------------------------------------------------------
 [
     {
-        "codigo": 1,
-        "nome": "Robson Candido dos Santos Alves",
-        "endereco": {
-            "cep": "80210-110",
-            "logradouro": "Rua Paschoal Bordignon",
-            "complemento": "",
-            "bairro": "Jardim Botânico",
-            "localidade": "Curitiba",
-            "uf": "PR",
-            "ibge": "4106902",
-            "gia": "",
-            "ddd": "41",
-            "siafi": "7535"
+        'codigo': 1,
+        'nome': 'Robson Candido dos Santos Alves',
+        'endereco': {
+            'cep': '80210-110',
+            'logradouro': 'Rua Paschoal Bordignon',
+            'complemento': '',
+            'bairro': 'Jardim Botânico',
+            'localidade': 'Curitiba',
+            'uf': 'PR',
+            'ibge': '4106902',
+            'gia': '',
+            'ddd': '41',
+            'siafi': '7535'
         }
     },
     {
-        "codigo": 2,
-        "nome": "Henrique Casagrande dos Santos Alves",
-        "endereco": {
-            "cep": "82820-230",
-            "logradouro": "Rua José Lins do Rego",
-            "complemento": "",
-            "bairro": "Bairro Alto",
-            "localidade": "Curitiba",
-            "uf": "PR",
-            "ibge": "4106902",
-            "gia": "",
-            "ddd": "41",
-            "siafi": "7535"
+        'codigo': 2,
+        'nome': 'Henrique Casagrande dos Santos Alves',
+        'endereco': {
+            'cep': '82820-230',
+            'logradouro': 'Rua José Lins do Rego',
+            'complemento': '',
+            'bairro': 'Bairro Alto',
+            'localidade': 'Curitiba',
+            'uf': 'PR',
+            'ibge': '4106902',
+            'gia': '',
+            'ddd': '41',
+            'siafi': '7535'
         }
     }
 ]
@@ -97,9 +97,9 @@ POST /cliente
 PUT  /cliente/{codigo}
 -------------------------------------------------------------------------------
 {
-    "nome": "Robson Candido dos Santos Alves",
-    "anoNascimento": "1980-08-29",
-    "cep": "80210-110"
+    'nome': 'Robson Candido dos Santos Alves',
+    'anoNascimento': '1980-08-29',
+    'cep': '80210-110'
 }
 ```
 
@@ -109,18 +109,18 @@ GET  /veiculo
 -------------------------------------------------------------------------------
 [
     {
-        "codigo": 1,
-        "marca": "Chevrollet",
-        "modelo": "Cruze",
-        "ano": 2017,
-        "valor": 150000
+        'codigo': 1,
+        'marca': 'Chevrollet',
+        'modelo': 'Cruze',
+        'ano': 2017,
+        'valor': 150000
     },
     {
-        "codigo": 2,
-        "marca": "Chevrollet",
-        "modelo": "Onix",
-        "ano": 2017,
-        "valor": 80000
+        'codigo': 2,
+        'marca': 'Chevrollet',
+        'modelo': 'Onix',
+        'ano': 2017,
+        'valor': 80000
     }
 ]
 
@@ -128,10 +128,10 @@ GET  /veiculo
 POST /veiculo
 -------------------------------------------------------------------------------
 {
-    "marca": "Chevrollet",
-    "modelo": "Cruze",
-    "ano": 2017,
-    "valor": 150000.00
+    'marca': 'Chevrollet',
+    'modelo': 'Cruze',
+    'ano': 2017,
+    'valor': 150000.00
 }
 ```
 

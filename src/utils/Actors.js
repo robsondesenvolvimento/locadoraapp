@@ -1,28 +1,28 @@
-const Veiculo = require('../models/Veiculo');
-const Cliente = require('../models/Cliente');
-const Locadora = require('../models/Locadora');
-const Endereco = require('../models/Endereco');
+const Veiculo = require('../models/veiculo');
+const Cliente = require('../models/cliente');
+const Locadora = require('../models/locadora');
+const Endereco = require('../models/endereco');
 
 
 
 let veiculos = new Array();
-veiculos.push(new Veiculo("Chevrollet", 'Cruze', 2017, 140000.00));
-veiculos.push(new Veiculo("Chevrollet", 'Onix', 2017, 80000.00));
-veiculos.push(new Veiculo("Fiat", 'Argo', 2019, 70000.00));
-veiculos.push(new Veiculo("Ferrari", 'Ferrari California', 2015, 1000000.00));
+veiculos.push(new Veiculo('Chevrollet', 'Cruze', 2017, 140000.00));
+veiculos.push(new Veiculo('Chevrollet', 'Onix', 2017, 80000.00));
+veiculos.push(new Veiculo('Fiat', 'Argo', 2019, 70000.00));
+veiculos.push(new Veiculo('Ferrari', 'Ferrari California', 2015, 1000000.00));
 
 var getEndereco = () =>{
   return new Endereco(
-    "80210-110",
-    "Rua Paschoal Bordignon",
-    "",
-    "Jardim Botânico",
-    "Curitiba",
-    "PR",
-    "4106902",
-    "",
-    "41",
-    "7535"
+    '80210-110',
+    'Rua Paschoal Bordignon',
+    '',
+    'Jardim Botânico',
+    'Curitiba',
+    'PR',
+    '4106902',
+    '',
+    '41',
+    '7535'
   );
 }
 

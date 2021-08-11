@@ -6,37 +6,30 @@ class Cliente {
   }
 
   get codigo() {
-    // eslint-disable-next-line no-underscore-dangle
     return this._codigo;
   }
 
   get nome() {
-    // eslint-disable-next-line no-underscore-dangle
     return this._nome;
   }
 
   set nome(valor) {
-    // eslint-disable-next-line no-underscore-dangle
     this._nome = valor;
   }
 
   get anoNascimento() {
-    // eslint-disable-next-line no-underscore-dangle
     return new Date(this._anoNascimento);
   }
 
   set anoNascimento(valor) {
-    // eslint-disable-next-line no-underscore-dangle
     this._anoNascimento = new Date(valor);
   }
 
   get endereco() {
-    // eslint-disable-next-line no-underscore-dangle
     return this._endereco;
   }
 
   set endereco(valor) {
-    // eslint-disable-next-line no-underscore-dangle
     this._endereco = valor;
   }
 }

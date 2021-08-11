@@ -1,6 +1,6 @@
-const conexao = require("../data/dbcontext")();
-const ClienteViewModel = require("../views/cliente.viewmodel");
-const EnderecoViewModel = require("../views/endereco.viewmodel");
+const conexao = require('../data/dbcontext')();
+const ClienteViewModel = require('../views/cliente.viewmodel');
+const EnderecoViewModel = require('../views/endereco.viewmodel');
 
 module.exports = () => {
   const repository = {};
@@ -90,7 +90,7 @@ module.exports = () => {
 
   repository.post = (callback, cliente, endereco) => {
     conexao.query(
-      "INSERT INTO `endereco` SET ?",
+      'INSERT INTO `endereco` SET ?',
       endereco,
       (error, results, fields) => {
         if (error) {
@@ -101,7 +101,7 @@ module.exports = () => {
     );
 
     conexao.query(
-      "INSERT INTO `cliente` SET ?",
+      'INSERT INTO `cliente` SET ?',
       {
         nome: cliente.nome,
         ano_nascimento: cliente.anoNascimento,
@@ -136,7 +136,7 @@ module.exports = () => {
 
   repository.atualizar = (callback, idCli, cliente, endereco) => {
     conexao.query(
-      "INSERT INTO `endereco` SET ?",
+      'INSERT INTO `endereco` SET ?',
       endereco,
       (error, results, fields) => {
         if (error) {
@@ -147,7 +147,7 @@ module.exports = () => {
     );
 
     conexao.query(
-      "UPDATE `cliente` SET nome = ?, ano_nascimento = ?, endereco = ? WHERE codigo = ?",
+      'UPDATE `cliente` SET nome = ?, ano_nascimento = ?, endereco = ? WHERE codigo = ?',
       [cliente.nome, cliente.anoNascimento, cliente.cep, idCli],
       (error, results, fields) => {
         if (error) {
@@ -176,7 +176,7 @@ module.exports = () => {
 
   repository.deletar = (idCli) => {
     conexao.query(
-      "DELETE FROM `cliente` WHERE codigo = ?",
+      'DELETE FROM `cliente` WHERE codigo = ?',
       [idCli],
       (error, results, fields) => {
         if (error) {

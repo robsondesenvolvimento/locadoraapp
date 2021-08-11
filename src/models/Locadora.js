@@ -1,6 +1,5 @@
 class Locadora {
   constructor(_codigoCliente, _codigoVeiculo, _dataLocacao, _valorDiaria) {
-    // eslint-disable-next-line no-multi-assign
     this._codigo = Locadora.codigo = Locadora.codigo
       ? (Locadora.codigo += 1)
       : 1;

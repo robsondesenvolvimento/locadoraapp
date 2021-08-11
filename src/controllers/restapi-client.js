@@ -17,16 +17,16 @@ module.exports = () => {
    *   /cliente:
    *     get:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Obter lista de clientes."
-   *       description: "Obter lista de clientes."
+   *       - 'Cliente'
+   *       summary: 'Obter lista de clientes.'
+   *       description: 'Obter lista de clientes.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       responses:
    *         200:
-   *           description: "Obter lista de clientes."
+   *           description: 'Obter lista de clientes.'
    *           schema:
-   *             $ref: "#/definitions/Cliente"
+   *             $ref: '#/definitions/Cliente'
    */
   clienteController.getTodos = (req, res) => {
     repositorioCliente.listar((clients) => {
@@ -40,24 +40,24 @@ module.exports = () => {
    *   /cliente/filtro:
    *     get:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Traz uma lista filtrada pelo inicio do nome do cliente."
-   *       description: "Traz uma lista filtrada pelo inicio do nome do cliente."
+   *       - 'Cliente'
+   *       summary: 'Traz uma lista filtrada pelo inicio do nome do cliente.'
+   *       description: 'Traz uma lista filtrada pelo inicio do nome do cliente.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       parameters:
-   *       - name: "nome"
-   *         in: "query"
-   *         description: "Primeiro nome do usuário seguido do sobrenome(opcional)."
+   *       - name: 'nome'
+   *         in: 'query'
+   *         description: 'Primeiro nome do usuário seguido do sobrenome(opcional).'
    *         require: true
-   *         type: "string"
+   *         type: 'string'
    *       responses:
    *         200:
-   *           description: "Obter lista de clientes."
+   *           description: 'Obter lista de clientes.'
    *           schema:
-   *             $ref: "#/definitions/Cliente"
+   *             $ref: '#/definitions/Cliente'
    *         204:
-   *           description: "Clientes não localizados."
+   *           description: 'Clientes não localizados.'
    */
   clienteController.getFiltroNome = (req, res) => {
     repositorioCliente.nome((client) => {
@@ -74,24 +74,24 @@ module.exports = () => {
    *   /cliente/{id}:
    *     get:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Traz um cliente filtrado pelo seu ID."
-   *       description: "Traz um cliente filtrado pelo seu ID."
+   *       - 'Cliente'
+   *       summary: 'Traz um cliente filtrado pelo seu ID.'
+   *       description: 'Traz um cliente filtrado pelo seu ID.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       parameters:
-   *       - name: "id"
-   *         in: "path"
-   *         description: "Número de ID do cliente."
+   *       - name: 'id'
+   *         in: 'path'
+   *         description: 'Número de ID do cliente.'
    *         require: true
-   *         type: "integer"
+   *         type: 'integer'
    *       responses:
    *         200:
-   *           description: "Obter lista de clientes."
+   *           description: 'Obter lista de clientes.'
    *           schema:
-   *             $ref: "#/definitions/Cliente"
+   *             $ref: '#/definitions/Cliente'
    *         204:
-   *           description: "Clientes não localizados."
+   *           description: 'Clientes não localizados.'
    */
   clienteController.getId = (req, res) => {
     const codigo = req.params.id;
@@ -109,25 +109,25 @@ module.exports = () => {
    *   /cliente:
    *     post:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Traz um cliente filtrado pelo seu ID."
-   *       description: "Traz um cliente filtrado pelo seu ID."
+   *       - 'Cliente'
+   *       summary: 'Traz um cliente filtrado pelo seu ID.'
+   *       description: 'Traz um cliente filtrado pelo seu ID.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       parameters:
-   *       - name: "cliente"
-   *         in: "body"
-   *         description: "Cliente"
+   *       - name: 'cliente'
+   *         in: 'body'
+   *         description: 'Cliente'
    *         require: true
    *         schema:
-   *           $ref: "#/definitions/ClienteViewModel"
+   *           $ref: '#/definitions/ClienteViewModel'
    *       responses:
    *         200:
-   *           description: "Obter lista de clientes."
+   *           description: 'Obter lista de clientes.'
    *           schema:
-   *             $ref: "#/definitions/Cliente"
+   *             $ref: '#/definitions/Cliente'
    *         204:
-   *           description: "Clientes não localizados."
+   *           description: 'Clientes não localizados.'
    */
   clienteController.postInserir = async (req, res) => {
     const endereco = await requestCep(req.body.cep).then((resp) => resp.data);
@@ -150,29 +150,29 @@ module.exports = () => {
    *   /cliente/{id}:
    *     put:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Atualiza dados de um cliente pelo seu ID e dados no corpo da requisição."
-   *       description: "Atualiza dados de um cliente pelo seu ID e dados no corpo da requisição."
+   *       - 'Cliente'
+   *       summary: 'Atualiza dados de um cliente pelo seu ID e dados no corpo da requisição.'
+   *       description: 'Atualiza dados de um cliente pelo seu ID e dados no corpo da requisição.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       parameters:
-   *       - name: "id"
-   *         in: "path"
-   *         description: "Número de ID do cliente."
+   *       - name: 'id'
+   *         in: 'path'
+   *         description: 'Número de ID do cliente.'
    *         require: true
-   *         type: "integer"
-   *       - name: "cliente"
-   *         in: "body"
-   *         description: "Cliente"
+   *         type: 'integer'
+   *       - name: 'cliente'
+   *         in: 'body'
+   *         description: 'Cliente'
    *         require: true
    *         schema:
-   *           $ref: "#/definitions/Cliente"
+   *           $ref: '#/definitions/Cliente'
    *       responses:
    *         200:
-   *           description: "Obter lista de clientes."
-   *           schema: "array"
+   *           description: 'Obter lista de clientes.'
+   *           schema: 'array'
    *         204:
-   *           description: "Clientes não localizados."
+   *           description: 'Clientes não localizados.'
    */
   clienteController.putAtualizar = async (req, res) => {
     const endereco = await requestCep(req.body.cep).then((resp) => resp.data);
@@ -196,20 +196,20 @@ module.exports = () => {
    *   /cliente/{id}:
    *     delete:
    *       tags:
-   *       - "Cliente"
-   *       summary: "Exclui um cliente da lista pelo seu ID."
-   *       description: "Exclui um cliente da lista pelo seu ID."
+   *       - 'Cliente'
+   *       summary: 'Exclui um cliente da lista pelo seu ID.'
+   *       description: 'Exclui um cliente da lista pelo seu ID.'
    *       produces:
-   *       - "application/json"
+   *       - 'application/json'
    *       parameters:
-   *       - name: "id"
-   *         in: "path"
-   *         description: "Número de ID do cliente."
+   *       - name: 'id'
+   *         in: 'path'
+   *         description: 'Número de ID do cliente.'
    *         require: true
-   *         type: "integer"
+   *         type: 'integer'
    *       responses:
    *         204:
-   *           description: "Clientes não localizados ou excluido com sucesso."
+   *           description: 'Clientes não localizados ou excluido com sucesso.'
    */
   clienteController.deleteDeletar = (req, res) => {
     repositorioCliente.deletar(req.params.id);
@@ -220,51 +220,51 @@ module.exports = () => {
    * @swagger
    * definitions:
    *   Cliente:
-   *     type: "object"
+   *     type: 'object'
    *     properties:
    *       nome:
-   *         type: "string"
-   *         description: "Nome do cliente"
+   *         type: 'string'
+   *         description: 'Nome do cliente'
    *       anoNascimento:
-   *         type: "string"
-   *         format: "date-time"
-   *         description: "Data de nascimento do cliente."
+   *         type: 'string'
+   *         format: 'date-time'
+   *         description: 'Data de nascimento do cliente.'
    *       endereco:
-   *         type: "object"
+   *         type: 'object'
    *         properties:
    *           cep:
-   *             type: "string"
+   *             type: 'string'
    *           logradouro:
-   *             type: "string"
+   *             type: 'string'
    *           complemento:
-   *             type: "string"
+   *             type: 'string'
    *           bairro:
-   *             type: "string"
+   *             type: 'string'
    *           localidade:
-   *             type: "string"
+   *             type: 'string'
    *           uf:
-   *             type: "string"
+   *             type: 'string'
    *           ibge:
-   *             type: "string"
+   *             type: 'string'
    *           gia:
-   *             type: "string"
+   *             type: 'string'
    *           ddd:
-   *             type: "string"
+   *             type: 'string'
    *           siafi:
-   *             type: "string"
+   *             type: 'string'
    *   ClienteViewModel:
-   *     type: "object"
+   *     type: 'object'
    *     properties:
    *       nome:
-   *         type: "string"
-   *         description: "Nome do cliente"
+   *         type: 'string'
+   *         description: 'Nome do cliente'
    *       anoNascimento:
-   *         type: "string"
-   *         format: "date-time"
-   *         description: "Data de nascimento do cliente."
+   *         type: 'string'
+   *         format: 'date-time'
+   *         description: 'Data de nascimento do cliente.'
    *       cep:
-   *         type: "string"
-   *         description: "CEP do endereço do cliente."
+   *         type: 'string'
+   *         description: 'CEP do endereço do cliente.'
    */
 
   return clienteController;

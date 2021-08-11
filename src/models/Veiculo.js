@@ -3,7 +3,6 @@ class Veiculo {
     constructor(_marca,_modelo,_ano,_valor){
         this._codigo = Veiculo.codigo = Veiculo.codigo ? Veiculo.codigo += 1 : 1;
         Object.assign(this, {_marca, _modelo, _ano,_valor});
-        //Object.freeze(this);
     }
 
     get codigo(){
@@ -13,6 +12,7 @@ class Veiculo {
     get marca(){
         return this._marca;
     }
+
     set marca(valor){
         this._marca = valor;
     }
@@ -20,6 +20,7 @@ class Veiculo {
     get modelo(){
         return this._modelo;
     }
+
     set modelo(valor){
         this._modelo = valor;
     }
@@ -27,6 +28,7 @@ class Veiculo {
     get ano(){
         return this._ano;
     }
+
     set ano(valor){
         this._ano = valor;
     }
@@ -34,6 +36,7 @@ class Veiculo {
     get valor(){
         return this._valor;
     }
+    
     set valor(valor){
         this._valor = valor;
     }
