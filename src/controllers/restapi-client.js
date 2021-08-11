@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 const axios = require('axios');
-const repositorioCliente = require('../repository/cliente.repository')();
+const repositorioCliente = require('../repository/cliente-repository')();
 
 async function requestCep(cep) {
   const novoCep = cep.replace('-', '');

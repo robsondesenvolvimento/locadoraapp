@@ -14,7 +14,7 @@ module.exports = () => {
 
   connection.connect((err) => {
     if (err) {
-      console.error(`error connecting: ${err.stack}`);
+      console.error(`Erro de conexão com o MySQL  : ${err.stack}`);
     }
   });
 
