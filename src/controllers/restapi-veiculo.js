@@ -1,4 +1,4 @@
-const repositorioVeiculos = require('../repository/veiculo.repository')();
+const repositorioVeiculos = require('../repository/veiculo-repository')();
 
 module.exports = () => {
   const veiculoController = {};

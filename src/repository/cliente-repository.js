@@ -1,4 +1,4 @@
-const conexao = require('../data/dbcontext')();
+const conexao = require('../data/database-context')();
 const ClienteViewModel = require('../views/cliente.viewmodel');
 const EnderecoViewModel = require('../views/endereco.viewmodel');
 

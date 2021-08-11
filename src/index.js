@@ -1,3 +1,3 @@
-const restapi = require('./controllers/restapi');
+const restapi = require('./controllers/restapi-controller');
 
 restapi();

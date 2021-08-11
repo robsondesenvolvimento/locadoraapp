@@ -1,4 +1,4 @@
-const conexao = require('../data/dbcontext')();
+const conexao = require('../data/database-context')();
 const VeiculoViewModel = require('../views/veiculo.viewmodel');
 
 module.exports = () => {
