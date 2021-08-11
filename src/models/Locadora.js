@@ -30,8 +30,8 @@ class Locadora {
 
   get valorFechamento() {
     const dataAtual = new Date().getTime();
-    var oneDay = 24 * 60 * 60 * 1000;
-    var diffDays = Math.abs((dataAtual - this._dataLocacao.getTime()) / oneDay);
+    const oneDay = 24 * 60 * 60 * 1000;
+    const diffDays = Math.abs((dataAtual - this._dataLocacao.getTime()) / oneDay);
     return Math.abs(diffDays * this._valorDiaria).toFixed(2);
   }
 }

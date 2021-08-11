@@ -2,6 +2,7 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const configuration = require('../config/configuration');
+const routing = require('../routers/router');
 
 const restapi = () => {
   const app = express();
@@ -29,7 +30,7 @@ const restapi = () => {
       host: `${host}:${port}`,
       basePath: '/',
       swagger: '2.0',
-      //schemes: ['http', 'https'],
+      // schemes: ['http', 'https'],
       schemes: ['http'],
       consumes: ['application/json'],
       produces: ['application/json'],
@@ -47,7 +48,6 @@ const restapi = () => {
 
   app.use(express.json());
 
-  const routing = require('../routers/Routers');
   app.use('/', routing);
 
   app.listen(port, () => {
