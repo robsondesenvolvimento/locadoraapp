@@ -1,12 +1,12 @@
-const conexao = require("../data/dbcontext")();
-const ClienteViewModel = require("../views/cliente.viewmodel");
-const EnderecoViewModel = require("../views/endereco.viewmodel");
+const conexao = require('../data/dbcontext')();
+const ClienteViewModel = require('../views/cliente.viewmodel');
+const EnderecoViewModel = require('../views/endereco.viewmodel');
 
 module.exports = () => {
   const repository = {};
 
   function toViewModel(dados) {
-    var cliente = new ClienteViewModel(
+    const cliente = new ClienteViewModel(
       dados.codigo,
       dados.nome,
       dados.anoNascimento,
@@ -28,80 +28,80 @@ module.exports = () => {
   }
 
   repository.listar = (callback) => {
-    let selectString = `
+    const selectString = `
         select 
           c.*, e.* 
         from locadora.cliente c 
         inner join locadora.endereco e on c.endereco = e.cep`;
 
-    conexao.query(selectString, function (err, rows) {
+    conexao.query(selectString, (err, rows) => {
       if (err) {
         console.log(err);
         return;
       }
-      if (rows != undefined && rows.length > 0) {
-        var lista = rows.map((x) => toViewModel(x));
-        return callback(lista);
+
+      if (rows !== undefined && rows.length > 0) {
+        const lista = rows.map((x) => toViewModel(x));
+        callback(lista);
       } else {
-        return callback(undefined);
+        callback(undefined);
       }
     });
   };
 
   repository.id = (callback, codigo) => {
-    let selectString = `
+    const selectString = `
         select 
           c.*, e.* 
         from locadora.cliente c 
         inner join locadora.endereco e on c.endereco = e.cep 
         where c.codigo = ${codigo}`;
 
-    conexao.query(selectString, function (err, rows) {
+    conexao.query(selectString, (err, rows) => {
       if (err) {
         console.log(err);
         return;
       }
-      if (rows != undefined && rows.length > 0) {
-        var lista = toViewModel(rows[0]);
-        return callback(lista);
+      if (rows !== undefined && rows.length > 0) {
+        const lista = toViewModel(rows[0]);
+        callback(lista);
       } else {
-        return callback(undefined);
+        callback(undefined);
       }
     });
   };
 
   repository.nome = (callback, nome) => {
-    let selectString = `
+    const selectString = `
         select 
           c.*, e.* 
         from locadora.cliente c 
         inner join locadora.endereco e on c.endereco = e.cep 
         where c.nome REGEXP '^${nome}.*'`;
 
-    conexao.query(selectString, function (err, rows) {
+    conexao.query(selectString, (err, rows) => {
       if (err) {
         console.log(err);
         return;
       }
       const listaCli = rows.map((x) => toViewModel(x));
-      return callback(listaCli);
+      callback(listaCli);
     });
   };
 
   repository.post = (callback, cliente, endereco) => {
     conexao.query(
-      "INSERT INTO `endereco` SET ?",
+      'INSERT INTO `endereco` SET ?',
       endereco,
       (error, results, fields) => {
         if (error) {
           console.log(error);
-          return;
         }
       }
     );
 
     conexao.query(
-      "INSERT INTO `cliente` SET ?",
+      'INSERT INTO `cliente` SET ?',
       {
         nome: cliente.nome,
         ano_nascimento: cliente.anoNascimento,
@@ -113,22 +113,22 @@ module.exports = () => {
           return;
         }
 
-        var id = results.insertId;
+        const id = results.insertId;
 
-        let selectString = `
+        const selectString = `
                 select 
                 c.*, e.* 
                 from locadora.cliente c 
                 inner join locadora.endereco e on c.endereco = e.cep 
                 where c.codigo = ${id}`;
 
-        conexao.query(selectString, function (err, rows) {
+        conexao.query(selectString, (err, rows) => {
           if (err) {
             console.log(err);
             return;
           }
-          var lista = rows.map((x) => toViewModel(x));
-          return callback(lista);
+          const lista = rows.map((x) => toViewModel(x));
+          callback(lista);
         });
       }
     );
@@ -136,7 +136,7 @@ module.exports = () => {
 
   repository.atualizar = (callback, idCli, cliente, endereco) => {
     conexao.query(
-      "INSERT INTO `endereco` SET ?",
+      'INSERT INTO `endereco` SET ?',
       endereco,
       (error, results, fields) => {
         if (error) {
@@ -147,7 +147,7 @@ module.exports = () => {
     );
 
     conexao.query(
-      "UPDATE `cliente` SET nome = ?, ano_nascimento = ?, endereco = ? WHERE codigo = ?",
+      'UPDATE `cliente` SET nome = ?, ano_nascimento = ?, endereco = ? WHERE codigo = ?',
       [cliente.nome, cliente.anoNascimento, cliente.cep, idCli],
       (error, results, fields) => {
         if (error) {
@@ -155,20 +155,20 @@ module.exports = () => {
           return;
         }
 
-        let selectString = `
+        const selectString = `
                 select 
                 c.*, e.* 
                 from locadora.cliente c 
                 inner join locadora.endereco e on c.endereco = e.cep 
                 where c.codigo = ${idCli}`;
 
-        conexao.query(selectString, function (err, rows) {
+        conexao.query(selectString, (err, rows) => {
           if (err) {
             console.log(err);
             return;
           }
-          var lista = rows.map((x) => toViewModel(x));
-          return callback(lista);
+          const lista = rows.map((x) => toViewModel(x));
+          callback(lista);
         });
       }
     );
@@ -176,12 +176,11 @@ module.exports = () => {
 
   repository.deletar = (idCli) => {
     conexao.query(
-      "DELETE FROM `cliente` WHERE codigo = ?",
+      'DELETE FROM `cliente` WHERE codigo = ?',
       [idCli],
       (error, results, fields) => {
         if (error) {
           console.log(error);
-          return;
         }
       }
     );

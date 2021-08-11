@@ -10,7 +10,7 @@ class LocadoraRepository {
       dados.veiculo,
       dados.dataLocacao,
       dados.valorDiaria,
-      dados.valorFechamento,
+      dados.valorFechamento
     );
   }
 

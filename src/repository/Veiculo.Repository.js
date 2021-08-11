@@ -1,11 +1,11 @@
-const conexao = require("../data/dbcontext")();
-const VeiculoViewModel = require("../views/veiculo.viewmodel");
+const conexao = require('../data/dbcontext')();
+const VeiculoViewModel = require('../views/veiculo.viewmodel');
 
 module.exports = () => {
   const repository = {};
 
   function toViewModel(dados) {
-    var veiculo = new VeiculoViewModel(
+    const veiculo = new VeiculoViewModel(
       dados.codigo,
       dados.marca,
       dados.modelo,
@@ -16,28 +16,28 @@ module.exports = () => {
   }
 
   repository.listar = (callback) => {
-    let selectString = `
+    const selectString = `
         select 
           * 
         from veiculo`;
 
-    conexao.query(selectString, function (err, rows) {
+    conexao.query(selectString, (err, rows) => {
       if (err) {
         console.log(err);
         return;
       }
-      if (rows != undefined && rows.length > 0) {
-        var lista = rows.map((x) => toViewModel(x));
-        return callback(lista);
+      if (rows !== undefined && rows.length > 0) {
+        const lista = rows.map((x) => toViewModel(x));
+        callback(lista);
       } else {
-        return callback(undefined);
+        callback(undefined);
       }
     });
   };
 
   repository.post = (callback, veiculo) => {
     conexao.query(
-      "INSERT INTO `veiculo` SET ?",
+      'INSERT INTO `veiculo` SET ?',
       {
         marca: veiculo.marca,
         modelo: veiculo.modelo,
@@ -50,21 +50,21 @@ module.exports = () => {
           return;
         }
 
-        var id = results.insertId;
+        const id = results.insertId;
 
-        let selectString = `
+        const selectString = `
                 select 
                 * 
                 from veiculo
                 where codigo = ${id}`;
 
-        conexao.query(selectString, function (err, rows) {
+        conexao.query(selectString, (err, rows) => {
           if (err) {
             console.log(err);
             return;
           }
-          var lista = rows.map((x) => toViewModel(x));
-          return callback(lista);
+          const lista = rows.map((x) => toViewModel(x));
+          callback(lista);
         });
       }
     );

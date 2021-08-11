@@ -5,7 +5,7 @@ class LocadoraViewModel {
     codigoVeiculo,
     dataLocacao,
     valorDiaria,
-    valorFechamento,
+    valorFechamento
   ) {
     Object.assign(this, {
       codigo,
