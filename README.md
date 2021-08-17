@@ -1,17 +1,16 @@
 # Projeto
-- Este projeto representa uma locadora de veículos e esta sendo desenvolvido para apresentar os conhecimentos aprendidos em Node.js no curso de Pós Full stack developement JavaScript.
+> Este projeto representa uma locadora de veículos e esta sendo desenvolvido para apresentar os conhecimentos aprendidos em Node.js no curso de Pós Full stack developement JavaScript.
 
 # Requerimentos
-- Node.js 14.x.x
-- MySQL
+> - Node.js 14.x.x
+> - MySQL
 
 # Para iniciar a aplicação
-- Install Mysql no docker
-- docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:latest
--
-- yarn [start-dev | start-prod]
-- ou
-- npm run [start-dev | start-prod]
+> - Install Mysql no docker
+> - docker run --name up-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:latest
+> - yarn [start-dev | start-prod]
+> - ou
+> - npm run [start-dev | start-prod]
 
 # Tabelas do banco de dados
 ```sql
@@ -63,7 +62,6 @@ CREATE TABLE `veiculo` (
 -- locadora.locadora definition
 
 CREATE TABLE `locadora` (
-  `codigo` int NOT NULL,
   `codigo_cliente` int NOT NULL,
   `codigo_veiculo` varchar(100) NOT NULL,
   `data_locacao` datetime NOT NULL,
@@ -173,6 +171,14 @@ GET  /locadora
         "valorFechamento": "353.62"
     }
 ]
+```
+
+-------------------------------------------------------------------------------
+GET /relatorio
+-------------------------------------------------------------------------------
+{
+    "totalFechamento": 2033.9751059027776
+}
 ```
 
 # Para acessar a documentação swagger
