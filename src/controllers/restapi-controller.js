@@ -37,9 +37,9 @@ const restapi = () => {
     },
     explorer: true,
     apis: [
-      './src/controllers/RestApiCliente.js',
-      './src/controllers/RestApiLocadora.js',
-      './src/controllers/RestApiVeiculo.js',
+      './src/controllers/restapi-cliente.js',
+      './src/controllers/restapi-locadora.js',
+      './src/controllers/restapi-veiculo.js',
     ],
   };
 

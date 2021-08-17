@@ -15,6 +15,8 @@
 
 # Tabelas do banco de dados
 ```sql
+-- locadora.cliente definition
+
 CREATE TABLE `cliente` (
   `codigo` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
@@ -27,6 +29,8 @@ CREATE TABLE `cliente` (
 ```
 
 ```sql
+-- locadora.endereco definition
+
 CREATE TABLE `endereco` (
   `cep` varchar(100) NOT NULL,
   `logradouro` varchar(100) DEFAULT NULL,
@@ -43,6 +47,8 @@ CREATE TABLE `endereco` (
 ```
 
 ```sql
+-- locadora.veiculo definition
+
 CREATE TABLE `veiculo` (
   `codigo` int NOT NULL AUTO_INCREMENT,
   `marca` varchar(100) NOT NULL,
@@ -51,6 +57,18 @@ CREATE TABLE `veiculo` (
   `valor` double NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+```
+
+```sql
+-- locadora.locadora definition
+
+CREATE TABLE `locadora` (
+  `codigo` int NOT NULL,
+  `codigo_cliente` int NOT NULL,
+  `codigo_veiculo` varchar(100) NOT NULL,
+  `data_locacao` datetime NOT NULL,
+  `valor_diaria` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
 ```json
@@ -133,6 +151,28 @@ POST /veiculo
     'ano': 2017,
     'valor': 150000.00
 }
+```
+
+```json
+-------------------------------------------------------------------------------
+GET  /locadora
+-------------------------------------------------------------------------------
+[
+    {
+        "codigoCliente": 1,
+        "codigoVeiculo": "1",
+        "dataLocacao": "2021-08-01T03:00:00.000Z",
+        "valorDiaria": 100,
+        "valorFechamento": "1607.25"
+    },
+    {
+        "codigoCliente": 2,
+        "codigoVeiculo": "2",
+        "dataLocacao": "2021-08-10T03:00:00.000Z",
+        "valorDiaria": 50,
+        "valorFechamento": "353.62"
+    }
+]
 ```
 
 # Para acessar a documentação swagger
