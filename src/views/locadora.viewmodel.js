@@ -1,6 +1,5 @@
 class LocadoraViewModel {
   constructor(
-    codigo,
     codigoCliente,
     codigoVeiculo,
     dataLocacao,
@@ -8,7 +7,6 @@ class LocadoraViewModel {
     valorFechamento
   ) {
     Object.assign(this, {
-      codigo,
       codigoCliente,
       codigoVeiculo,
       dataLocacao,

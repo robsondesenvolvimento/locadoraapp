@@ -9,7 +9,7 @@ class EnderecoViewModel {
     ibge,
     gia,
     ddd,
-    siafi,
+    siafi
   ) {
     Object.assign(this, {
       cep,

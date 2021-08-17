@@ -1,8 +1,6 @@
-const LocacaoRepository = require('../repository/locadorarepository');
+const repositorioLocadoras = require('../repository/locadora-repository')();
 
 module.exports = () => {
-  const locacaoRepository = new LocacaoRepository();
-
   const locacaoController = {};
 
   /**
@@ -23,7 +21,9 @@ module.exports = () => {
    *             $ref: '#/definitions/Locadora'
    */
   locacaoController.getTodos = (req, res) => {
-    res.status(200).json(locacaoRepository.getAll());
+    repositorioLocadoras.listar((locadoras) => {
+      res.status(200).json(locadoras);
+    });
   };
 
   /**
